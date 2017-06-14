@@ -1,4 +1,4 @@
-# tract-level business establishment churning
-# An R shiny app for UCI's Metropolitan Futures Initiative 
+# Business Relocations in Southern California, 2010-2014
+# An R shiny app for UCI's Metropolitan Futures Initiative
+# Copyright Kevin Kane, 2017
 
-# Consists of ui.R, server.R, ZIP_centroids.csv, a shapefile, a css, and possibly additional data
