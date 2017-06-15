@@ -5,7 +5,7 @@ library(sp)
 library(maptools)
 
 # Reads in shapefiles, generates a data frame version of it to use for data display 'dfsub' and converts zero values to NA
-sub <- readShapePoly("SoCal_place_2010_allCopy.shp")
+sub <- readShapePoly("SoCal_place_2010_all.shp")
 dfsub <- data.frame(sub)
 #dfsub[dfsub==0] = NA  
 fips = unique(unlist(dfsub$plfips))
