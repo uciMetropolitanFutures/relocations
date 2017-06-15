@@ -1,4 +1,4 @@
-setwd("E:/Documents/MFI/webmap/relocations")
+#setwd("E:/Documents/MFI/webmap/relocations")
 library(shiny)
 library(leaflet)
 library(sp)
