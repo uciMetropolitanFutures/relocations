@@ -4,7 +4,7 @@ library(sp)
 library(maptools)
 
 # Files must be read in here if ui.R calls something from them (in this case, 'names')
-sub <- readShapePoly("SoCal_place_2010_all.shp")
+sub <- readShapePoly("SoCal_place_2010all.shp")
 dfsub <- data.frame(sub)
 names = as.character(unique(unlist(dfsub$NAME10[dfsub$oall>9 & dfsub$iall>9])))
 
