@@ -8,7 +8,6 @@ library(gridExtra)
 sub <- readShapePoly("SoCal_place_2010_all")
 dfsub <- data.frame(sub)
 names = as.character(unique(unlist(dfsub$NAME10[dfsub$oall>9 & dfsub$iall>9])))
-coords <- read.csv("city_coords.csv")
 
 # This app uses a tab panel with a custom .css style. The whole UI is within the parentheses following div()
 shinyUI(navbarPage("Business Relocations in Southern California", id="nav",
