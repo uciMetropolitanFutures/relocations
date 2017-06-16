@@ -3,9 +3,10 @@ library(shiny)
 library(leaflet)
 library(sp)
 library(maptools)
+library(gridExtra)
 
 # Reads in shapefiles, generates a data frame version of it to use for data display 'dfsub' and converts zero values to NA
-sub <- readShapePoly("SoCal_place_2010all")
+sub <- readShapePoly("SoCal_place_2010_all")
 dfsub <- data.frame(sub)
 #dfsub[dfsub==0] = NA  
 fips = unique(unlist(dfsub$plfips))
@@ -45,7 +46,7 @@ shinyServer(function(input, output) {
     m = leaflet(sub) %>%  setView(lng=center$x_coord, lat=center$y_coord, zoom=10) %>% addTiles() %>%
     
       addPolygons(data=sub, stroke=T, weight=1.1, fillColor = ~pal(choice), color="black", fillOpacity=0.5, 
-                  opacity=1, popup=~paste(NAME10, " (", choice, ")",sep=""))  %>%
+                  opacity=1, popup=~NAME10) %>%
       # legend takes object 'pal' as argument for color palette (also called pal...), and 'choice' for values.
       addLegend("bottomleft", pal=pal, values=~choice, opacity=0.75, 
                 title=~paste("Business", input$inout, input$city))

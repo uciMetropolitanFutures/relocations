@@ -2,11 +2,12 @@ library(shiny)
 library(leaflet)
 library(sp)
 library(maptools)
+library(gridExtra)
 
 # Files must be read in here if ui.R calls something from them (in this case, 'names')
-sub <- readShapePoly("SoCal_place_2010all")
+sub <- readShapePoly("SoCal_place_2010_all")
 dfsub <- data.frame(sub)
-names = as.character(unique(unlist(dfsub$NAME10[dfsub$oall>9 & dfsub$iall>9 & dfsub$CLASSFP10=='C1'])))
+names = as.character(unique(unlist(dfsub$NAME10[dfsub$oall>9 & dfsub$iall>9])))
 
 # This app uses a tab panel with a custom .css style. The whole UI is within the parentheses following div()
 shinyUI(navbarPage("Business Relocations in Southern California", id="nav",
