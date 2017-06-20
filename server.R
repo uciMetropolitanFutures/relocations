@@ -41,9 +41,9 @@ shinyServer(function(input, output) {
   output$myMap = renderLeaflet(finalMap())
   
   #### (5) TEXT OUTPUT - MAP PAGE
-  output$within <- renderText(paste("Total businesses relocating WITHIN ", input$city, ":", dfsub[,grep(options$choose, colnames(dfsub))][dfsub$NAME10==input$city]))
-  output$total <- renderText(paste("Total businesses ", input$inout, input$city, ":", sum(dfsub[,grep(options$choose, colnames(dfsub))][dfsub$NAME10!=input$city])))
-  output$tablelabel <- renderText(paste("Top 5 cities which businesses", input$inout, input$city, switch(input$inout, "relocating to"="come from:", "relocating from"="go to:")))
+  output$within <- renderText(paste("Relocations WITHIN ", input$city, " (2010-2014):", dfsub[,grep(options$choose, colnames(dfsub))][dfsub$NAME10==input$city]))
+  output$total <- renderText(paste("Businesses ", input$inout, input$city, " (2010-2014):", sum(dfsub[,grep(options$choose, colnames(dfsub))][dfsub$NAME10!=input$city])))
+  output$tablelabel <- renderText(paste("Top 5 cities which businesses", input$inout, input$city, switch(input$inout, "relocating to"="come from (2010-2014):", "relocating from"="go to:")))
   output$topfive <- renderTable({
     a <- cbind(as.character(dfsub[order(-dfsub[,grep(options$choose, colnames(dfsub))]),][2:6,5]),
       as.numeric(dfsub[order(-dfsub[,grep(options$choose, colnames(dfsub))]),][2:6,grep(options$choose, colnames(dfsub))])  )
@@ -62,7 +62,7 @@ shinyServer(function(input, output) {
   #### (7) TEXT OUTPUT - MULTIPLE INDUSTRIES PAGE 
   output$var_desc <- renderText({
     data_notes = switch(input$industry2,
-                        "All" = "All business establishments.",
+                        "All" = "all business establishments.",
                         "Retail" = "Retail Trade (NAICS 44-45) and Accommodation and Food Service (NAICS 72).",
                         "Education/Healthcare" = "Educational Services (NAICS 61) and Health Care and Social Assistance (NAICS 62).",
                         "FIRE" = "Finance and Insurance (NAICS 52) and Real Estate and Rental and Leasing (NAICS 53).",
@@ -71,12 +71,12 @@ shinyServer(function(input, output) {
                         "Industrial" = "Utilities (NAICS 22), Manufacturing (NAICS 31-33), Wholesale Trade (NAICS 42), and Transportation and Warehousing (NAICS 48-49).")
     paste(" -- ", input$industry2, " includes ", data_notes, sep="")
   })
-  output$within2 <- renderText(paste("Total businesses relocating WITHIN ", input$city2, ":", cats[,grep(options2$choose2, colnames(cats))][cats$NAME10==input$city2]))
-  output$total2 <- renderText(paste("Total businesses ", input$inout2, input$city2, ":", sum(cats[,grep(options2$choose2, colnames(cats))][cats$NAME10!=input$city2])))
-  output$tablelabel2 <- renderText(paste("Top 5 cities which", input$industry2, "businesses", input$inout2, input$city2, switch(input$inout2, "relocating to"="come from:", "relocating from"="go to:")))
+  output$within2 <- renderText(paste("Relocations WITHIN ", input$city2, " (2010-2014):", cats[,grep(options2$choose2, colnames(cats))][cats$NAME10==input$city2]))
+  output$total2 <- renderText(paste("Businesses ", input$inout2, input$city2, " (2010-2014):", sum(cats[,grep(options2$choose2, colnames(cats))][cats$NAME10!=input$city2])))
+  output$tablelabel2 <- renderText(paste("Top Ten cities which", input$industry2, "businesses", input$inout2, input$city2, switch(input$inout2, "relocating to"="come from  (2010-2014):", "relocating from"="go to:")))
   output$topfive2 <- renderTable({
-    b <- cbind(as.character(cats[order(-cats[,grep(options2$choose2, colnames(cats))]),][2:6,6]),
-      as.numeric(cats[order(-cats[,grep(options2$choose2, colnames(cats))]),][2:6,grep(options2$choose2, colnames(cats))])  )
+    b <- cbind(as.character(cats[order(-cats[,grep(options2$choose2, colnames(cats))]),][2:11,6]),
+      as.numeric(cats[order(-cats[,grep(options2$choose2, colnames(cats))]),][2:11,grep(options2$choose2, colnames(cats))])  )
   })
 })
 
