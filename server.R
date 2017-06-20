@@ -1,6 +1,5 @@
 library(shiny)
 library(leaflet)
-library(sp)
 library(maptools)
 
 sub <- readShapePoly("SoCal_place_2010_all")
@@ -23,7 +22,7 @@ shinyServer(function(input, output) {
   })
   #### (3) MAKE THE MAP AS A REACTIVE TO USER INPUTS
   finalMap <- reactive ({
-    withProgress(message='Please Wait: Map Loading', {
+    #withProgress(message='Please Wait: Map Loading', {
     choice = dfsub[,grep(options$choose, colnames(dfsub))]
     choice2 = choice
     choice[choice==0] <- NA
@@ -35,7 +34,7 @@ shinyServer(function(input, output) {
       # legend takes object 'pal' as argument for color palette (also called pal...), and 'choice' for values.
       addLegend("bottomleft", pal=pal, values=~choice, opacity=0.75, na.label=~"None",
                 title=~paste("Business", input$inout, input$city))
-    })
+    #})
   })
   
   #### (4) PASS THE REACTIVE MAP TO AN OUTPUT OBJECT CALLED 'output$myMap' 

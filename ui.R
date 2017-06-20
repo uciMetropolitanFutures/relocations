@@ -1,6 +1,5 @@
 library(shiny)
 library(leaflet)
-library(sp)
 library(maptools)
 
 sub <- readShapePoly("SoCal_place_2010_all")
